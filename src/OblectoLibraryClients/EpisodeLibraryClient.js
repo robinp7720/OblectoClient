@@ -8,16 +8,6 @@ export default class MovieLibraryClient {
     }
 
     /**
-     * Returns an array with names of all lists available
-     * @returns {Promise<string[]>}
-     */
-    async getLists() {
-        let response = await this.oblectoSession.axios.get(`/movies/lists`);
-
-        return response.data;
-    }
-
-    /**
      * Returns a single page of the list with the specified name
      * @param {String} listName
      * @param {String} order
@@ -26,7 +16,7 @@ export default class MovieLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getList(listName, order, count, page) {
-        let response = await this.oblectoSession.axios.get(`/movies/list/${listName}`, {
+        let response = await this.oblectoSession.axios.get(`/episodes/list/${listName}`, {
             params: {
                 order,
                 page,
@@ -42,7 +32,7 @@ export default class MovieLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getSets() {
-        let response = await this.oblectoSession.axios.get(`/movies/sets`);
+        let response = await this.oblectoSession.axios.get(`/episodes/sets`);
 
         return response.data;
     }
@@ -56,13 +46,25 @@ export default class MovieLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getSet(setId, order, count, page) {
-        let response = await this.oblectoSession.axios.get(`/movies/set/${setId}`, {
+        let response = await this.oblectoSession.axios.get(`/episodes/set/${setId}`, {
             params: {
                 order,
                 page,
                 count
             }
         });
+
+        return response.data;
+    }
+
+    async getWatching() {
+        let response = await this.oblectoSession.axios.get(`/episodes/watching`);
+
+        return response.data;
+    }
+
+    async getNextUp() {
+        let response = await this.oblectoSession.axios.get(`/episodes/next`);
 
         return response.data;
     }

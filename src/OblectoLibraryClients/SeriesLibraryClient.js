@@ -1,10 +1,10 @@
 export default class SeriesLibraryClient {
     /**
      *
-     * @param {OblectoClient} oblectoClient
+     * @param {OblectoSession} oblectoSession
      */
-    constructor(oblectoClient) {
-        this.oblectoClient = oblectoClient;
+    constructor(oblectoSession) {
+        this.oblectoSession = oblectoSession;
     }
 
     /**
@@ -12,7 +12,7 @@ export default class SeriesLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getLists() {
-        let response = await this.oblectoClient.axios.get(`/series/lists`);
+        let response = await this.oblectoSession.axios.get(`/series/lists`);
 
         return response.data;
     }
@@ -26,7 +26,7 @@ export default class SeriesLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getList(listName, order, count, page) {
-        let response = await this.oblectoClient.axios.get(`/series/list/${listName}`, {
+        let response = await this.oblectoSession.axios.get(`/series/list/${listName}`, {
             params: {
                 order,
                 page,
@@ -42,7 +42,7 @@ export default class SeriesLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getSets() {
-        let response = await this.oblectoClient.axios.get(`/series/sets`);
+        let response = await this.oblectoSession.axios.get(`/series/sets`);
 
         return response.data;
     }
@@ -56,7 +56,7 @@ export default class SeriesLibraryClient {
      * @returns {Promise<string[]>}
      */
     async getSet(setId, order, count, page) {
-        let response = await this.oblectoClient.axios.get(`/series/set/${setId}`, {
+        let response = await this.oblectoSession.axios.get(`/series/set/${setId}`, {
             params: {
                 order,
                 page,

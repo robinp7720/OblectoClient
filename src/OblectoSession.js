@@ -1,6 +1,8 @@
 import axios from 'axios';
 import MovieLibraryClient from './OblectoLibraryClients/MovieLibraryClient';
 import SeriesLibraryClient from './OblectoLibraryClients/SeriesLibraryClient';
+import EpisodeLibraryClient from './OblectoLibraryClients/EpisodeLibraryClient';
+import UserManager from './UserManager';
 
 export default class OblectoSession {
     constructor(host) {
@@ -11,6 +13,8 @@ export default class OblectoSession {
 
         this.movieLibrary = new MovieLibraryClient(this);
         this.seriesLibrary = new SeriesLibraryClient(this);
+        this.episodeLibrary = new EpisodeLibraryClient(this);
+        this.userManager = new UserManager(this);
     }
 
     async getSessionToken(username, password) {

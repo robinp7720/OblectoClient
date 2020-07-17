@@ -1,6 +1,6 @@
 let expect = require('expect.js');
 
-let OblectoSession = require('../dist/OblectoSession').OblectoSession;
+let OblectoSession = require('../dist/OblectoSession').default;
 
 let username = 'robin';
 let password = 'robin';
@@ -88,11 +88,11 @@ describe('Oblecto Session', function () {
             expect(response).to.be.an('array');
         });
 
-        it('Series Releasedate List', async function () {
+        it('Series First Aired List', async function () {
             const oblectoSession = new OblectoSession(host);
             await oblectoSession.authenticate(username, password);
 
-            let response = await oblectoSession.seriesLibrary.getList('releaseDate', 'asc');
+            let response = await oblectoSession.seriesLibrary.getList('firstAired', 'asc');
 
             console.log(response);
 
@@ -111,6 +111,68 @@ describe('Oblecto Session', function () {
 
                 expect(response).to.be.an('array');
             });
+        });
+    });
+
+    describe('Episode Library', async function () {
+        it('Episode Lists', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.episodeLibrary.getLists();
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
+        });
+
+        it('Episode Created List', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.episodeLibrary.getList('createdAt', 'asc');
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
+        });
+
+        it('Episode First Aired List', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.episodeLibrary.getList('firstAired', 'asc');
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
+
+        });
+
+        describe('Episode Sets', async function () {
+            it('Episode List Set', async function () {
+                const oblectoSession = new OblectoSession(host);
+                await oblectoSession.authenticate(username, password);
+
+                let response = await oblectoSession.episodeLibrary.getSets();
+
+                console.log(response);
+
+                expect(response).to.be.an('array');
+            });
+        });
+    });
+
+    describe('User Manager', async function () {
+        it('User List', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.userManager.getUsers();
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
         });
     });
 
