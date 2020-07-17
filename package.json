@@ -1,0 +1,38 @@
+{
+  "name": "oblectoclient",
+  "version": "0.0.1",
+  "description": "Oblecto Server javascript client library",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "./node_modules/@babel/cli/bin/babel.js src -d dist",
+    "test": "./node_modules/mocha/bin/mocha tests/**/*.js --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinp7720/OblectoClient.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/robinp7720/OblectoClient/issues"
+  },
+  "homepage": "https://github.com/robinp7720/OblectoClient#readme",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/polyfill": "^7.10.1",
+    "@babel/preset-env": "^7.10.3",
+    "mocha": "^8.0.1",
+    "expect.js": "^0.3.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
