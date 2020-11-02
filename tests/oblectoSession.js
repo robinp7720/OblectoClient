@@ -63,6 +63,18 @@ describe('Oblecto Session', function () {
                 expect(response).to.be.an('array');
             });
         });
+
+        it('Movie Watchlist', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.movieLibrary.getWatching();
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
+
+        });
     });
 
     describe('Series Library', async function () {
