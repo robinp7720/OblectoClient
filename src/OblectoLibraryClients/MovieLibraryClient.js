@@ -66,4 +66,10 @@ export default class MovieLibraryClient {
 
         return response.data;
     }
+
+    async getWatching() {
+        let response = await this.oblectoSession.axios.get(`/movies/watching`);
+
+        return response.data;
+    }
 }

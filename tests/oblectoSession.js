@@ -3,9 +3,9 @@ let expect = require('expect.js');
 let OblectoSession = require('../dist/OblectoSession').default;
 
 let username = 'robin';
-let password = 'robin';
+let password = 'R197PT2T';
 
-let host = 'http://localhost:8080';
+let host = 'http://oblecto';
 
 describe('Oblecto Session', function () {
     describe('authenticate', async function () {
@@ -62,6 +62,18 @@ describe('Oblecto Session', function () {
 
                 expect(response).to.be.an('array');
             });
+        });
+
+        it('Movie watching', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.movieLibrary.getWatching();
+
+            console.log(response);
+
+            expect(response).to.be.an('array');
+
         });
     });
 
@@ -173,6 +185,26 @@ describe('Oblecto Session', function () {
             console.log(response);
 
             expect(response).to.be.an('array');
+        });
+    });
+
+    describe('Playback session', async function () {
+        it('Session Create', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let streamSession = await oblectoSession.createStreamSession(2);
+
+            console.log(streamSession.getUrl());
+        });
+    });
+
+    describe('Remotes', async function () {
+        it('List clients', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            console.log(await oblectoSession.remotes.getClients());
         });
     });
 

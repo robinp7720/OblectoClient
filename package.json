@@ -1,11 +1,12 @@
 {
   "name": "oblectoclient",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Oblecto Server javascript client library",
   "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/@babel/cli/bin/babel.js src -d dist",
-    "test": "./node_modules/mocha/bin/mocha tests/**/*.js --reporter spec"
+    "test": "./node_modules/mocha/bin/mocha tests/**/*.js --reporter spec",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2"
-  }
+  },
+  "files": [
+    "dist/"
+  ]
 }
