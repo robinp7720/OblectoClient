@@ -1,6 +1,6 @@
 {
   "name": "oblectoclient",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Oblecto Server javascript client library",
   "main": "dist/index.js",
   "scripts": {
