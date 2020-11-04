@@ -66,4 +66,10 @@ export default class SeriesLibraryClient {
 
         return response.data;
     }
+
+    async getInfo(seriesId) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/info`);
+
+        return response.data;
+    }
 }

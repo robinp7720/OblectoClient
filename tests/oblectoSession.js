@@ -2,10 +2,10 @@ let expect = require('expect.js');
 
 let OblectoSession = require('../dist/OblectoSession').default;
 
-let username = 'robin';
-let password = 'robin';
+let username = process.env.username || 'robin';
+let password = process.env.password || 'robin';
 
-let host = 'http://localhost:8080';
+let host = process.env.host ||  'http://localhost:8080';
 
 describe('Oblecto Session', function () {
     describe('authenticate', async function () {
@@ -48,7 +48,6 @@ describe('Oblecto Session', function () {
             console.log(response);
 
             expect(response).to.be.an('array');
-
         });
 
         describe('Movie Sets', async function () {
@@ -109,8 +108,17 @@ describe('Oblecto Session', function () {
             console.log(response);
 
             expect(response).to.be.an('array');
-
         });
+
+        it('Series Info', async function () {
+            const oblectoSession = new OblectoSession(host);
+            await oblectoSession.authenticate(username, password);
+
+            let response = await oblectoSession.seriesLibrary.getInfo(1);
+
+            console.log(response);
+        });
+
 
         describe('Series Sets', async function () {
             it('Series List Set', async function () {
