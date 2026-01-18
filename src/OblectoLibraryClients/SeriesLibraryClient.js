@@ -72,4 +72,46 @@ export default class SeriesLibraryClient {
 
         return response.data;
     }
+
+    async getEpisodes(seriesId) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/episodes`);
+
+        return response.data;
+    }
+
+    async search(name) {
+        let response = await this.oblectoSession.axios.get(`/shows/search/${name}`);
+
+        return response.data;
+    }
+
+    async getPoster(seriesId, size, config = {}) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/poster`, {
+            ...config,
+            params: {
+                size,
+                ...(config.params || {})
+            }
+        });
+
+        return response.data;
+    }
+
+    async uploadPoster(seriesId, file, config = {}) {
+        let formData = file;
+        if (typeof FormData !== 'undefined' && !(file instanceof FormData)) {
+            formData = new FormData();
+            formData.append('file', file);
+        }
+
+        let response = await this.oblectoSession.axios.put(`/series/${seriesId}/poster`, formData, config);
+
+        return response.data;
+    }
+
+    async indexSeries(seriesId) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/index`);
+
+        return response.data;
+    }
 }

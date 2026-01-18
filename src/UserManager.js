@@ -13,19 +13,19 @@ export default class UserManager {
     }
 
     async getUser(id) {
-        let response = await this.oblectoSession.axios.get(`/users/${id}`);
+        let response = await this.oblectoSession.axios.get(`/user/${id}`);
 
         return response.data;
     }
 
     async updateUser(id, info) {
-        let response = await this.oblectoSession.axios.put(`/users/${id}`, info);
+        let response = await this.oblectoSession.axios.put(`/user/${id}`, info);
 
         return response.data;
     }
 
     async createUser(username, password, name, email) {
-        let response = await this.oblectoSession.axios.post(`/users`, {
+        let response = await this.oblectoSession.axios.post(`/user`, {
             username,
             password,
             name,
@@ -36,7 +36,7 @@ export default class UserManager {
     }
 
     async deleteUser(id) {
-        let response = await this.oblectoSession.axios.delete(`/users/${id}`);
+        let response = await this.oblectoSession.axios.delete(`/user/${id}`);
 
         return response.data;
     }

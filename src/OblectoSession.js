@@ -3,6 +3,13 @@ import MovieLibraryClient from './OblectoLibraryClients/MovieLibraryClient';
 import SeriesLibraryClient from './OblectoLibraryClients/SeriesLibraryClient';
 import EpisodeLibraryClient from './OblectoLibraryClients/EpisodeLibraryClient';
 import UserManager from './UserManager';
+import SettingsClient from './SettingsClient';
+import LibrariesClient from './LibrariesClient';
+import SystemClient from './SystemClient';
+import FilesClient from './FilesClient';
+import SessionClient from './SessionClient';
+import RemoteClient from './RemoteClient';
+import SetsClient from './SetsClient';
 
 export default class OblectoSession {
     constructor(host) {
@@ -15,6 +22,13 @@ export default class OblectoSession {
         this.seriesLibrary = new SeriesLibraryClient(this);
         this.episodeLibrary = new EpisodeLibraryClient(this);
         this.userManager = new UserManager(this);
+        this.settings = new SettingsClient(this);
+        this.libraries = new LibrariesClient(this);
+        this.system = new SystemClient(this);
+        this.files = new FilesClient(this);
+        this.sessions = new SessionClient(this);
+        this.remotes = new RemoteClient(this);
+        this.sets = new SetsClient(this);
     }
 
     async getSessionToken(username, password) {
