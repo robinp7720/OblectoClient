@@ -17,4 +17,10 @@ export default class StatusClient {
 
         return response.data;
     }
+
+    async getSeedboxStatus() {
+        let response = await this.oblectoSession.axios.get('/api/v1/status/seedbox');
+
+        return response.data;
+    }
 }
