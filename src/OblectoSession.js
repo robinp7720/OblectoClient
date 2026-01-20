@@ -10,6 +10,7 @@ import FilesClient from './FilesClient';
 import SessionClient from './SessionClient';
 import RemoteClient from './RemoteClient';
 import SetsClient from './SetsClient';
+import StatusClient from './StatusClient';
 
 export default class OblectoSession {
     constructor(host) {
@@ -29,6 +30,7 @@ export default class OblectoSession {
         this.sessions = new SessionClient(this);
         this.remotes = new RemoteClient(this);
         this.sets = new SetsClient(this);
+        this.status = new StatusClient(this);
     }
 
     async getSessionToken(username, password) {
