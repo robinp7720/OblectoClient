@@ -8,7 +8,6 @@ import LibrariesClient from './LibrariesClient';
 import SystemClient from './SystemClient';
 import FilesClient from './FilesClient';
 import SessionClient from './SessionClient';
-import RemoteClient from './RemoteClient';
 import SetsClient from './SetsClient';
 import StatusClient from './StatusClient';
 
@@ -28,7 +27,8 @@ export default class OblectoSession {
         this.system = new SystemClient(this);
         this.files = new FilesClient(this);
         this.sessions = new SessionClient(this);
-        this.remotes = new RemoteClient(this);
+        // Remote play moved to the realtime socket: commands need acks and a
+        // live state stream back, which REST gave neither of.
         this.sets = new SetsClient(this);
         this.status = new StatusClient(this);
     }
