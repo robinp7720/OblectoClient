@@ -8,6 +8,23 @@ export default class SeriesLibraryClient {
     }
 
     /**
+     * Browse the library with filters, facets, and cursor pagination.
+     * @param {Object} options
+     * @returns {Promise<Object>}
+     */
+    async browse({ sort = 'createdAt', genre, ...params } = {}) {
+        const response = await this.oblectoSession.axios.get(`/series/list/${encodeURIComponent(sort)}`, {
+            params: {
+                ...params,
+                genre: Array.isArray(genre) ? genre.join(',') : genre,
+                mode: 'browse'
+            }
+        });
+
+        return response.data;
+    }
+
+    /**
      * Returns an array with names of all lists available
      * @returns {Promise<string[]>}
      */

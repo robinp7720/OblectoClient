@@ -1,39 +1,14 @@
 export default class SessionClient {
-    /**
-     * @param {OblectoSession} oblectoSession
-     */
-    constructor(oblectoSession) {
-        this.oblectoSession = oblectoSession;
+    constructor(oblectoSession) { this.oblectoSession = oblectoSession; }
+    async create(fileId, options = {}) {
+        return (await this.oblectoSession.axios.post('/playback/sessions', { fileId, ...options })).data;
     }
-
-    async create(fileId, params = {}) {
-        let response = await this.oblectoSession.axios.get(`/session/create/${fileId}`, {
-            params
-        });
-
-        return response.data;
-    }
-
-    async stream(sessionId, params = {}, config = {}) {
-        let response = await this.oblectoSession.axios.get(`/session/stream/${sessionId}`, {
-            ...config,
-            params
-        });
-
-        return response.data;
-    }
-
-    getStreamUrl(sessionId, params = {}) {
-        let baseURL = this.oblectoSession.axios.defaults.baseURL || '';
-        let query = new URLSearchParams(params).toString();
-        let url = `${baseURL}/session/stream/${sessionId}`;
-
-        return query ? `${url}?${query}` : url;
-    }
-
-    async getHlsSegment(sessionId, id, config = {}) {
-        let response = await this.oblectoSession.axios.get(`/HLS/${sessionId}/segment/${id}`, config);
-
-        return response.data;
+    async get(id) { return (await this.oblectoSession.axios.get(`/playback/sessions/${id}`)).data; }
+    async update(id, options) { return (await this.oblectoSession.axios.patch(`/playback/sessions/${id}`, options)).data; }
+    async progress(id, progress) { await this.oblectoSession.axios.post(`/playback/sessions/${id}/progress`, progress); }
+    async stop(id) { await this.oblectoSession.axios.delete(`/playback/sessions/${id}`); }
+    mediaUrl(url) {
+        const base = this.oblectoSession.axios.defaults.baseURL || window.location.origin;
+        return new URL(url.replace(/^\//, ''), `${base.replace(/\/$/, '')}/`).toString();
     }
 }
