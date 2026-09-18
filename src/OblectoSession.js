@@ -10,6 +10,8 @@ import FilesClient from './FilesClient';
 import SessionClient from './SessionClient';
 import SetsClient from './SetsClient';
 import StatusClient from './StatusClient';
+import AccountClient from './AccountClient';
+import GroupsClient from './GroupsClient';
 
 export default class OblectoSession {
     constructor(host) {
@@ -31,6 +33,8 @@ export default class OblectoSession {
         // live state stream back, which REST gave neither of.
         this.sets = new SetsClient(this);
         this.status = new StatusClient(this);
+        this.account = new AccountClient(this);
+        this.groups = new GroupsClient(this);
     }
 
     /**
