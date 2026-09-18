@@ -33,19 +33,36 @@ export default class OblectoSession {
         this.status = new StatusClient(this);
     }
 
-    async getSessionToken(username, password) {
-        let response = await this.axios.post('/auth/login', {
-            username,
-            password
-        });
+    /**
+     * What the login screen should offer: whether this client is on the local
+     * network and, if so, which users to show on the profile picker.
+     */
+    async getLoginOptions() {
+        let response = await this.axios.get('/auth/login-options');
+
+        return response.data;
+    }
+
+    /**
+     * @param {{ username?: string, userId?: number, password?: string }} credentials
+     */
+    async getSessionToken(credentials) {
+        let response = await this.axios.post('/auth/login', credentials);
 
         return response.data.accessToken;
     }
 
+    /**
+     * @param {string|{ username?: string, userId?: number, password?: string }} username
+     *   a username, or credentials identifying the user by id (profile picker)
+     * @param {string} [password] omitted for local-network password-less sign-in
+     */
     async authenticate(username, password) {
-        this.username = username;
+        const credentials = typeof username === 'object' ? username : { username, password };
 
-        this.accessToken = await this.getSessionToken(username, password);
+        this.username = credentials.username;
+
+        this.accessToken = await this.getSessionToken(credentials);
 
         this.axios.defaults.headers.common = {'Authorization': `bearer ${this.accessToken}`};
     }

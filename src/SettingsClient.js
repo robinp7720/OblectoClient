@@ -6,6 +6,10 @@ export default class SettingsClient {
         this.oblectoSession = oblectoSession;
     }
 
+    async testProvider(provider) {
+        return (await this.oblectoSession.axios.post(`/api/v1/settings/providers/${encodeURIComponent(provider)}/test`)).data;
+    }
+
     async getAll() {
         let response = await this.oblectoSession.axios.get('/api/v1/settings');
 
