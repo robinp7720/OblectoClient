@@ -6,6 +6,10 @@ export default class SystemClient {
         this.oblectoSession = oblectoSession;
     }
 
+    async getMaintenanceJobs() {
+        return (await this.oblectoSession.axios.get('/api/v1/system/maintenance/jobs')).data;
+    }
+
     async triggerMaintenance(action, target) {
         let response = await this.oblectoSession.axios.post('/api/v1/system/maintenance', {
             action,
