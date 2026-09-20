@@ -12,6 +12,7 @@ import SetsClient from './SetsClient';
 import StatusClient from './StatusClient';
 import AccountClient from './AccountClient';
 import GroupsClient from './GroupsClient';
+import PeopleClient from './PeopleClient';
 
 export default class OblectoSession {
     constructor(host) {
@@ -35,6 +36,7 @@ export default class OblectoSession {
         this.status = new StatusClient(this);
         this.account = new AccountClient(this);
         this.groups = new GroupsClient(this);
+        this.people = new PeopleClient(this);
     }
 
     /**
