@@ -7,6 +7,12 @@ export default class SeriesLibraryClient {
         this.oblectoSession = oblectoSession;
     }
 
+    /** Return up to twelve related titles already in the library. */
+    async getRelated(id) {
+        const response = await this.oblectoSession.axios.get(`/series/${encodeURIComponent(id)}/related`);
+        return response.data.items;
+    }
+
     /**
      * Browse the library with filters, facets, and cursor pagination.
      * @param {Object} options
