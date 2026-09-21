@@ -102,6 +102,12 @@ export default class SeriesLibraryClient {
         return response.data;
     }
 
+    async getSeriesSets(seriesId) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/sets`);
+
+        return response.data;
+    }
+
     async search(name) {
         let response = await this.oblectoSession.axios.get(`/shows/search/${name}`);
 
