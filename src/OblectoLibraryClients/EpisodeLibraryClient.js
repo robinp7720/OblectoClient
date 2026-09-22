@@ -39,6 +39,12 @@ export default class EpisodeLibraryClient {
         return response.data;
     }
 
+    async setWatched(episodeId, watched) {
+        let response = await this.oblectoSession.axios.put(`/episode/${episodeId}/watched`, { watched });
+
+        return response.data;
+    }
+
     async getNext(episodeId) {
         let response = await this.oblectoSession.axios.get(`/episode/${episodeId}/next`);
 

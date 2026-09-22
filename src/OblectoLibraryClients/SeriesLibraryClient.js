@@ -108,6 +108,12 @@ export default class SeriesLibraryClient {
         return response.data;
     }
 
+    async setSeasonWatched(seriesId, season, watched) {
+        let response = await this.oblectoSession.axios.put(`/series/${seriesId}/seasons/${encodeURIComponent(season)}/watched`, { watched });
+
+        return response.data;
+    }
+
     async search(name) {
         let response = await this.oblectoSession.axios.get(`/shows/search/${name}`);
 

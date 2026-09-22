@@ -71,6 +71,12 @@ export default class MovieLibraryClient {
         return response.data;
     }
 
+    async setWatched(movieId, watched) {
+        let response = await this.oblectoSession.axios.put(`/movie/${movieId}/watched`, { watched });
+
+        return response.data;
+    }
+
     /**
      * Search movies by name.
      * @param {String} name
