@@ -7,6 +7,12 @@ export default class MovieLibraryClient {
         this.oblectoSession = oblectoSession;
     }
 
+    /** Return up to twelve related titles already in the library. */
+    async getRelated(id) {
+        const response = await this.oblectoSession.axios.get(`/movie/${encodeURIComponent(id)}/related`);
+        return response.data.items;
+    }
+
     /**
      * Browse the library with filters, facets, and cursor pagination.
      * @param {Object} options
@@ -61,6 +67,12 @@ export default class MovieLibraryClient {
      */
     async getInfo(movieId) {
         let response = await this.oblectoSession.axios.get(`/movie/${movieId}/info`);
+
+        return response.data;
+    }
+
+    async setWatched(movieId, watched) {
+        let response = await this.oblectoSession.axios.put(`/movie/${movieId}/watched`, { watched });
 
         return response.data;
     }

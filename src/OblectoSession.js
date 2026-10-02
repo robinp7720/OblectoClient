@@ -1,3 +1,4 @@
+import FederationClient from './FederationClient';
 import axios from 'axios';
 import MovieLibraryClient from './OblectoLibraryClients/MovieLibraryClient';
 import SeriesLibraryClient from './OblectoLibraryClients/SeriesLibraryClient';
@@ -12,6 +13,7 @@ import SetsClient from './SetsClient';
 import StatusClient from './StatusClient';
 import AccountClient from './AccountClient';
 import GroupsClient from './GroupsClient';
+import PeopleClient from './PeopleClient';
 
 export default class OblectoSession {
     constructor(host) {
@@ -25,6 +27,7 @@ export default class OblectoSession {
         this.episodeLibrary = new EpisodeLibraryClient(this);
         this.userManager = new UserManager(this);
         this.settings = new SettingsClient(this);
+        this.federation = new FederationClient(this);
         this.libraries = new LibrariesClient(this);
         this.system = new SystemClient(this);
         this.files = new FilesClient(this);
@@ -35,6 +38,7 @@ export default class OblectoSession {
         this.status = new StatusClient(this);
         this.account = new AccountClient(this);
         this.groups = new GroupsClient(this);
+        this.people = new PeopleClient(this);
     }
 
     /**

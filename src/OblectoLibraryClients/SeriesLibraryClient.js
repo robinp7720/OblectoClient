@@ -7,6 +7,12 @@ export default class SeriesLibraryClient {
         this.oblectoSession = oblectoSession;
     }
 
+    /** Return up to twelve related titles already in the library. */
+    async getRelated(id) {
+        const response = await this.oblectoSession.axios.get(`/series/${encodeURIComponent(id)}/related`);
+        return response.data.items;
+    }
+
     /**
      * Browse the library with filters, facets, and cursor pagination.
      * @param {Object} options
@@ -92,6 +98,18 @@ export default class SeriesLibraryClient {
 
     async getEpisodes(seriesId) {
         let response = await this.oblectoSession.axios.get(`/series/${seriesId}/episodes`);
+
+        return response.data;
+    }
+
+    async getSeriesSets(seriesId) {
+        let response = await this.oblectoSession.axios.get(`/series/${seriesId}/sets`);
+
+        return response.data;
+    }
+
+    async setSeasonWatched(seriesId, season, watched) {
+        let response = await this.oblectoSession.axios.put(`/series/${seriesId}/seasons/${encodeURIComponent(season)}/watched`, { watched });
 
         return response.data;
     }
