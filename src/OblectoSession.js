@@ -1,3 +1,4 @@
+import FederationClient from './FederationClient';
 import axios from 'axios';
 import MovieLibraryClient from './OblectoLibraryClients/MovieLibraryClient';
 import SeriesLibraryClient from './OblectoLibraryClients/SeriesLibraryClient';
@@ -26,6 +27,7 @@ export default class OblectoSession {
         this.episodeLibrary = new EpisodeLibraryClient(this);
         this.userManager = new UserManager(this);
         this.settings = new SettingsClient(this);
+        this.federation = new FederationClient(this);
         this.libraries = new LibrariesClient(this);
         this.system = new SystemClient(this);
         this.files = new FilesClient(this);
