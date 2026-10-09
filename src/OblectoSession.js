@@ -1,3 +1,4 @@
+import StatisticsClient from './StatisticsClient';
 import FederationClient from './FederationClient';
 import axios from 'axios';
 import MovieLibraryClient from './OblectoLibraryClients/MovieLibraryClient';
@@ -36,6 +37,7 @@ export default class OblectoSession {
         // live state stream back, which REST gave neither of.
         this.sets = new SetsClient(this);
         this.status = new StatusClient(this);
+        this.statistics = new StatisticsClient(this);
         this.account = new AccountClient(this);
         this.groups = new GroupsClient(this);
         this.people = new PeopleClient(this);
