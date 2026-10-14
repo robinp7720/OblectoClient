@@ -7,6 +7,26 @@ export default class SeriesLibraryClient {
         this.oblectoSession = oblectoSession;
     }
 
+    async setFavourite(id, favourite) {
+        return (await this.oblectoSession.axios.put(`/series/${encodeURIComponent(id)}/favourite`, { favourite })).data;
+    }
+
+    async setWatchlist(id, watchlist) {
+        return (await this.oblectoSession.axios.put(`/series/${encodeURIComponent(id)}/watchlist`, { watchlist })).data;
+    }
+
+    async getLibrary(id) {
+        return (await this.oblectoSession.axios.get(`/series/${encodeURIComponent(id)}/library`, { timeout: 30000 })).data;
+    }
+
+    async getExtras(id) {
+        return (await this.oblectoSession.axios.get(`/series/${encodeURIComponent(id)}/extras`, { timeout: 30000 })).data;
+    }
+
+    async markEarlierWatched(id, episodeId) {
+        return (await this.oblectoSession.axios.put(`/series/${encodeURIComponent(id)}/episodes/${encodeURIComponent(episodeId)}/earlier/watched`, { watched: true })).data;
+    }
+
     /** Return up to twelve related titles already in the library. */
     async getRelated(id) {
         const response = await this.oblectoSession.axios.get(`/series/${encodeURIComponent(id)}/related`);

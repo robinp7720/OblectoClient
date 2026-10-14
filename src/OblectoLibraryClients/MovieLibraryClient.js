@@ -77,6 +77,21 @@ export default class MovieLibraryClient {
         return response.data;
     }
 
+    async getExtras(movieId) {
+        const response = await this.oblectoSession.axios.get(`/movie/${encodeURIComponent(movieId)}/extras`);
+        return response.data;
+    }
+
+    async setFavourite(movieId, favourite) {
+        const response = await this.oblectoSession.axios.put(`/movie/${encodeURIComponent(movieId)}/favourite`, { favourite });
+        return response.data;
+    }
+
+    async setWatchlist(movieId, watchlist) {
+        const response = await this.oblectoSession.axios.put(`/movie/${encodeURIComponent(movieId)}/watchlist`, { watchlist });
+        return response.data;
+    }
+
     /**
      * Search movies by name.
      * @param {String} name

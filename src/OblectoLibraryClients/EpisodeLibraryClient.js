@@ -33,6 +33,10 @@ export default class EpisodeLibraryClient {
         return response.data;
     }
 
+    async setFavourite(id, favourite) {
+        return (await this.oblectoSession.axios.put(`/episode/${encodeURIComponent(id)}/favourite`, { favourite })).data;
+    }
+
     async getContext(episodeId) {
         let response = await this.oblectoSession.axios.get(`/episode/${episodeId}/context`);
 
